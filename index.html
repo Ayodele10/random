@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Stuff</title>
+</head>
+
+<body style="font-size: 1.5rem;">
+
+    <form action="get">
+        <br><br>
+        <label for="Input">Your number: &nbsp;&nbsp;&nbsp;</label>
+
+        <input type="number" id="Input" placeholder="value" required
+            style="font-size: inherit; border: 0.1rem dashed #f00; outline-offset: 1rem;">
+
+        <button type="submit" id="button" style="display: flex; margin: 3rem;border: #00f solid 1px; border-radius: 15px; font-size: inherit; cursor: pointer;
+            ">Choose Operator
+        </button>
+        <br><br>
+        <div id="Disp" style="visibility: hidden;">
+
+            <br><br><br>
+            <hr>
+            <label for="SecondInput">Second number:&nbsp;&nbsp;</label>
+
+            <input type="number" id="SecondInput" placeholder="Second value" required
+                style="font-size: inherit; border: 0.1rem dashed #00f; outline-offset: 1rem;">
+
+            <hr>
+            <br><br><br>
+            <label for="Digits">Operators: &nbsp; </label>
+            <select name="Digits" id="Digits" style="font-size: inherit;">
+
+
+                <option value="">Default</option>
+
+
+                <optgroup label="Primary Operators">
+                    <option value="Add">Add</option>
+                    <option value="Divide">Divide</option>
+                    <option value="Subtract">Subtract</option>
+                    <option value="Multiply">Multiply</option>
+                </optgroup>
+
+                <optgroup label="Advanced Operators">
+                    <option value="Modulus">Modulus</option>
+                    <option value="PowerOf">PowerOf</option>
+                </optgroup>
+
+            </select>
+
+        </div>
+    </form>
+
+    <p id="para"></p>
+
+
+
+    <script>
+
+        // GLOBAL VARIABLES
+        let Para = document.querySelector("#para");
+        let Button = document.querySelector("#button")
+        let Disp = document.querySelector("#Disp")
+
+
+        // EVENT LISTENER FOR THE BUTTON
+        Button.addEventListener('click', Runner)
+
+        // THE FUNCTION THAT WILL RUN WHEN THE BUTTON IS CLICKED
+        function Runner() {
+            event.preventDefault();
+
+            // THE BROWSER QUERIES FOR THE FIRST NPUT EACH TIME THE BUTTON IS CLICKED   
+            let Input = Number(document.querySelector("#Input").value);
+            let SecondInput = Number(document.getElementById('SecondInput').value);
+            let Choice = document.getElementById("Digits")
+
+
+            //IF THE FIRST INPUT STRING IS EMPTY
+            if (Input == "") {
+                Para.innerHTML = "Invalid input. Please enter valid numbers.";
+            }
+
+            // IF IT IS NOT EMPTY
+            else {
+
+                Disp.style.visibility = "visible"
+
+
+                // CONDITIONALS FOR EACH OPERATOR
+                if (Choice.value === "Add") {
+                    Button.textContent = 'Add'
+                    Button.style.backgroundColor = "#00f"
+                    result = Input + SecondInput
+                    Para.innerHTML = `Your result is: ${result}`
+
+                }
+                else if (Choice.value === 'Divide') {
+                    Button.textContent = 'Divide'
+                    Button.style.backgroundColor = "#00f"
+                    result = Input / SecondInput
+                    Para.innerHTML = `Your result is: ${result}`
+
+                }
+                else if (Choice.value === 'Subtract') {
+                    Button.textContent = 'Subtract'
+                    Button.style.backgroundColor = "#00f"
+                    result = Input - SecondInput
+                    Para.innerHTML = `Your result is: ${result}`
+
+                }
+                else if (Choice.value === 'Multiply') {
+                    Button.textContent = 'Multiply'
+                    Button.style.backgroundColor = "#00f"
+                    result = Input * SecondInput
+                    Para.innerHTML = `Your result is: ${result}`
+
+                }
+                else if (Choice.value === 'Modulus') {
+                    Button.textContent = 'Modulo'
+                    Button.style.backgroundColor = "#00f"
+                    result = Input % SecondInput
+                    Para.innerHTML = `Your result is: ${result}`
+
+                }
+                else if (Choice.value === 'PowerOf') {
+                    Button.textContent = 'PowerOf'
+                    Button.style.backgroundColor = "#00f"
+                    result = Input ** SecondInput
+                    Para.innerHTML = `Your result is: ${result}`
+                }
+                else {
+                    Para.innerHTML = ""
+                }
+
+                
+            }
+        }
+        Button.addEventListener('dblclick', remover)
+
+        function remover() {
+            Disp.style.visibility = "hidden"
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
